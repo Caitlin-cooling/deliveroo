@@ -14,3 +14,17 @@ export default {
   }
 }
 </script>
+
+<style>
+@font-face {
+  font-family: "plex-sans";
+  src: local("IBMPlexSans-Regular"), url("../public/fonts/IBMPlexSans-Regular.woff2") format("woff2");
+}
+body {
+  margin: 0;
+}
+
+#app {
+  font-family: "plex-sans";
+}
+</style>

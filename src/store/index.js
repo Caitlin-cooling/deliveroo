@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import restaurantService from "../services/restaurants";
+import restaurantService from "@/services/restaurants";
 
 Vue.use(Vuex);
 
@@ -25,7 +25,6 @@ const mutations = {
 }
 
 const actions = {
-  // TODO should these be saved in the store
   async getRestaurants({ state }) {
     const restaurantsResponse = await restaurantService.getRestaurants(state.neighborhood);
     return restaurantsResponse.restaurants;

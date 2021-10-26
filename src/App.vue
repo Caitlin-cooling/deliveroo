@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Browse from "./views/Browse";
+import Browse from "@/views/Browse";
 
 export default {
   name: 'App',

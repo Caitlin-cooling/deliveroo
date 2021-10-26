@@ -549,6 +549,11 @@ const mockRestaurantsResponse = {
   ]
 }
 
+async function getRestaurants() {
+  return Promise.resolve(mockRestaurantsResponse)
+}
+
 export default {
-  mockRestaurantsResponse
+  mockRestaurantsResponse,
+  getRestaurants
 }

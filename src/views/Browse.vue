@@ -1,9 +1,9 @@
 <template>
   <div>
     <header class="browse--nav">
-      <img src="../assets/svgs/logo-horizontal.svg" alt="deliveroo logo" />
+      <img src="@/assets/svgs/logo-horizontal.svg" alt="deliveroo logo" />
       <div>
-        <img src="../assets/svgs/user-icon.svg" alt="user icon" />
+        <img src="@/assets/svgs/user-icon.svg" alt="user icon" />
         <span class="browse--nav__name" v-if="isDesktopUser">
           {{ this.$store.state.user.fullName }}
         </span>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import Card from "../components/Card.vue";
+import Card from "@/components/Card.vue";
 
 export default {
   name: "Browse",
@@ -54,7 +54,6 @@ export default {
   },
   computed: {
     isDesktopUser() {
-      console.log(this.$store.state.screenDimensions)
       return this.$store.state.screenDimensions.width > 768;
     },
     maxResults() {
@@ -63,7 +62,7 @@ export default {
   },
   async created() {
     this.allRestaurants = await this.$store.dispatch("getRestaurants");
-    this.visibleRestaunts = this.allRestaurants.slice(0, this.maxResults)
+    this.visibleRestaunts = this.allRestaurants?.slice(0, this.maxResults);
   },
   methods: {
     getDescription(restaurant) {
@@ -135,6 +134,10 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 1.2em 3em;
+  }
+
+  .browse--restaurant-list__container {
+    padding: 1em 3em;
   }
 }
 </style>

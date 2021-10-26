@@ -2,7 +2,12 @@
   <div>
     <header class="browse--nav">
       <img src="../assets/svgs/logo-horizontal.svg" alt="deliveroo logo" />
-      <img src="../assets/svgs/user-icon.svg" alt="user icon" />
+      <div>
+        <img src="../assets/svgs/user-icon.svg" alt="user icon" />
+        <span class="browse--nav__name" v-if="isDesktopUser">
+          {{ this.$store.state.user.fullName }}
+        </span>
+      </div>
     </header>
     <main>
       <div class="browse--header">
@@ -16,16 +21,21 @@
           Change location
         </button>
       </div>
-      <ul class="browse--restaurant-list">
-        <li v-for="(restaurant) in visibleRestaunts" :key="restaurant.id">
-          <card
-            :name="restaurant.name"
-            :url="restaurant.url"
-            :image="restaurant.image"
-            :description="getDescription(restaurant)"
-          />
-        </li>
-      </ul>
+      <div class="browse--restaurant-list__container">
+        <p class="browse--restaurant-list__count" v-if="isDesktopUser">
+          {{ allRestaurants.length }} restaurants
+        </p>
+        <ul class="browse--restaurant-list">
+          <li v-for="(restaurant) in visibleRestaunts" :key="restaurant.id">
+            <card
+              :name="restaurant.name"
+              :url="restaurant.url"
+              :image="restaurant.image"
+              :description="getDescription(restaurant)"
+            />
+          </li>
+        </ul>
+      </div>
     </main>
   </div>
 </template>
@@ -40,12 +50,20 @@ export default {
     return {
       allRestaurants: [],
       visibleRestaunts: [],
-      maxResults: 4
+    }
+  },
+  computed: {
+    isDesktopUser() {
+      console.log(this.$store.state.screenDimensions)
+      return this.$store.state.screenDimensions.width > 768;
+    },
+    maxResults() {
+      return this.isDesktopUser ? 9 : 4;
     }
   },
   async created() {
     this.allRestaurants = await this.$store.dispatch("getRestaurants");
-    this.visibleRestaunts = this.allRestaurants.splice(0, this.maxResults)
+    this.visibleRestaunts = this.allRestaurants.slice(0, this.maxResults)
   },
   methods: {
     getDescription(restaurant) {
@@ -61,6 +79,10 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 0.7em 1em;
+}
+
+.browse--nav__name {
+  padding-left: 0.8em
 }
 
 .browse--header {
@@ -89,9 +111,18 @@ export default {
   font-family: "plex-sans";
 }
 
-.browse--restaurant-list {
-  list-style: none;
+.browse--restaurant-list__container {
   padding: 1em 0 0 0;
+}
+
+.browse--restaurant-list__count {
+  margin: 1em;
+  color: #8c9b9b;
+}
+
+.browse--restaurant-list {
+  padding: 0;
+  list-style: none;
   margin: 0;
   display: flex;
   flex-wrap: wrap;

@@ -76,22 +76,8 @@ const mockRestaurantsResponse = {
       ]
     },
     {
-      "id": "60282",
-      "name": "The Orange Buffalo @ The Hoxton Square Bar and Kitchen",
-      "image": "https://f.roocdn.com/images/menus/49540/header-image.jpg?width=360&height=200&auto=webp&format=jpg&fit=crop&v=1511022110",
-      "url": "https://deliveroo.co.uk/menu/london/hoxton/the-orange-buffalo",
-      "price": 2,
-      "tags": [
-        "American",
-        "Burgers",
-        "Chicken",
-        "Wings",
-        "Vegan"
-      ]
-    },
-    {
       "id": "61626",
-      "name": "Bleecker ",
+      "name": "Bleecker",
       "image": "https://f.roocdn.com/images/menus/4314/header-image.jpg?width=360&height=200&auto=webp&format=jpg&fit=crop&v=1509696746",
       "url": "https://deliveroo.co.uk/menu/london/bank/bleecker-bloomberg",
       "price": 2,

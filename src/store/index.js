@@ -26,7 +26,9 @@ const mutations = {
 
 const actions = {
   async getRestaurants({ state }) {
-    const restaurantsResponse = await restaurantService.getRestaurants(state.neighborhood);
+    const restaurantsResponse = await restaurantService.getRestaurants(
+      state.user.neighborhood
+    );
     return restaurantsResponse.restaurants;
   }
 }

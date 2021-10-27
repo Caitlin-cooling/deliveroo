@@ -31,9 +31,15 @@ describe("store", () => {
   describe("actions", () => {
     describe("getRestaurants", () => {
       it("retrieves and returns list of restaurants based on users neighborhood", async () => {
+        store.state.user = {
+          fullName: "Jane Smith",
+          neighborhood: "Fitzrovia"
+        }
         jest.spyOn(restaurantService, "getRestaurants");
         const response = await store.dispatch("getRestaurants");
-        expect(restaurantService.getRestaurants).toHaveBeenCalledWith(store.state.neighborhood);
+        expect(restaurantService.getRestaurants).toHaveBeenCalledWith(
+          "Fitzrovia"
+        );
         expect(response).toEqual(restaurantService.mockRestaurantsResponse.restaurants);
       });
     });

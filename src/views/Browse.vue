@@ -5,7 +5,7 @@
       <div>
         <img src="@/assets/svgs/user-icon.svg" alt="user icon" />
         <span class="browse--nav__name" v-if="isDesktopUser">
-          {{ this.$store.state.user.fullName }}
+          {{ $store.state.user.fullName }}
         </span>
       </div>
     </header>
@@ -48,8 +48,7 @@ export default {
   components: { Card },
   data() {
     return {
-      allRestaurants: [],
-      visibleRestaunts: [],
+      allRestaurants: []
     }
   },
   computed: {
@@ -58,11 +57,13 @@ export default {
     },
     maxResults() {
       return this.isDesktopUser ? 9 : 4;
+    },
+    visibleRestaunts() {
+      return this.allRestaurants?.slice(0, this.maxResults);
     }
   },
   async created() {
     this.allRestaurants = await this.$store.dispatch("getRestaurants");
-    this.visibleRestaunts = this.allRestaurants?.slice(0, this.maxResults);
   },
   methods: {
     getDescription(restaurant) {

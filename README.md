@@ -12,7 +12,7 @@ The project is split in to the following structure:
 ## Dependancies
 - VueJs
 - Vuex for state management
-- Vue  test utils for unit tests
+- Vue  test utils or unit tests
 
 ## Available commands
 - Project setup: `npm install`

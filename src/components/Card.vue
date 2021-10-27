@@ -1,10 +1,10 @@
-<template>
+<template functional>
   <section class="card--container">
-    <a :href="url" class="card--link">
-      <img :src="image" class="card--image" />
-      <span class="card--name">{{ name }}</span>
+    <a :href="props.url" class="card--link">
+      <img :src="props.image" class="card--image" />
+      <span class="card--name">{{ props.name }}</span>
       <slot name="decsription">
-        <span class="card--description">{{ description }}</span>
+        <span class="card--description">{{ props.description }}</span>
       </slot>
     </a>
   </section>
@@ -16,7 +16,7 @@ export default {
   props: {
     image: {
       type: String,
-      default: "placeholder-image-path"
+      default: "placeholder-image-url"
     },
     url: {
       type: String,
